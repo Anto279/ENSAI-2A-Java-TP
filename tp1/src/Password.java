@@ -67,9 +67,38 @@ public class Password {
      */
     public static boolean isStrongPassword(String password) {
 
-        // Code here
+        int n = password.length();
+        boolean isStrong1 = false;
+        boolean isStrong2 = false;
+        boolean isStrong3 = false;
+        boolean isStrong4 = true;
 
-        return false;
+        if (n >= 12) {
+            isStrong1 = true;
+        }
+        ;
+
+        while (n > 0 && !isStrong2) {
+            char testchr = password.charAt(n - 1);
+            isStrong2 = Character.isUpperCase(testchr);
+            n--;
+        }
+
+        int b = password.length();
+        while (b > 0 && !isStrong3) {
+            char testchr = password.charAt(b - 1);
+            isStrong3 = Character.isLowerCase(testchr);
+            b--;
+        }
+
+        int c = password.length();
+        while (c > 0 && isStrong4) {
+            char testchr = password.charAt(c - 1);
+            isStrong4 = !Character.isWhitespace(testchr);
+            c--;
+        }
+
+        return (isStrong1 && isStrong2 && isStrong3 && isStrong4);
     }
 
     /**
