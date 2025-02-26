@@ -1,6 +1,8 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -136,9 +138,36 @@ public class Password {
      */
     public static String generatePassword(int nbCar) {
 
-        // Code here
+        String UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
+        String DIGITS = "0123456789";
+        String SPECIAL_CHARACTERS = "!@#$%^&*()-_=+[]{}|;:',.<>?/";
+        String ALL_CHARACTERS = UPPERCASE + LOWERCASE + DIGITS + SPECIAL_CHARACTERS;
+        SecureRandom RANDOM = new SecureRandom();
 
-        return null;
+        if (nbCar < 4) {
+            throw new IllegalArgumentException("Password length must be at least 4 characters");
+        }
+
+        List<Character> passwordChars = new ArrayList<>();
+
+        // Add at least one character from each required category
+        passwordChars.add(UPPERCASE.charAt(RANDOM.nextInt(UPPERCASE.length())));
+        passwordChars.add(LOWERCASE.charAt(RANDOM.nextInt(LOWERCASE.length())));
+        passwordChars.add(DIGITS.charAt(RANDOM.nextInt(DIGITS.length())));
+        passwordChars.add(SPECIAL_CHARACTERS.charAt(RANDOM.nextInt(SPECIAL_CHARACTERS.length())));
+
+        for (int i = 4; i < nbCar; i++) {
+            passwordChars.add(ALL_CHARACTERS.charAt(RANDOM.nextInt(ALL_CHARACTERS.length())));
+        }
+
+        StringBuilder password = new StringBuilder();
+        for (char ch : passwordChars) {
+            password.append(ch);
+
+            Collections.shuffle(passwordChars);
+        }
+        return password.toString();
     }
 
     public static void main(String[] args) {
