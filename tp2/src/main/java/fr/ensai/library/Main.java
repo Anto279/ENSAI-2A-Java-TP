@@ -15,4 +15,8 @@ public class Main {
 
         System.out.println(fellowshipOfTheRing.toString());
     }
+
+Library lib = new Library("AntoLib", []);
+lib.loadBooksFromCSV("src/ressources/main.csv")
+lib.displayBooks()
 }

@@ -13,25 +13,25 @@ import java.util.Objects;
 public class Library {
     // Attributes
         private String name;
-        private List<Books> Books;
+        private List<Book> Books;
 
     /**
      * Constructs a new Library object.
      */
-    public Author(String name; List<Books> Books) {
+    public Author(String name; List<Book> Books) {
         this.name = name;
         this.Books = new ArrayList<>();
     }
 
     public void addBook(Book book){
-        Books.add(book)
+        this.Books.add(book)
     }
 
     public void displayBooks(){
-        if (Books.isEmpty()){
+        if (this.Books.isEmpty()){
             System.out.println("La collection de livres est vide");
         }
-        else {for (String book : Books) {
+        else {for (Book book : this.Books) {
     book.toString();}
 }
     }
